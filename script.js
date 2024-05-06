@@ -28,18 +28,23 @@ for (let atleta of dados){
 }
 
 
-const atleta = dados[10];
+//const atleta = dados[10];
 
 const conteudo = document.getElementById("conteúdo");
 
-conteudo.innerHTML = `
-    <div class='card'>
-        <div class='img-cont'>
-            <img src='${atleta.imagem}' alt='Foto de ${atleta.nome}'>
-        </div>
-        <p class='posicao'>${atleta.posicao}</p>
-        <p class='nome'>${atleta.nome}</p>
-        <p class='descricao'>${atleta.descricao}</p>
-        <p class='nascimento'>${atleta.nascimento}</p>
-    </div>
-`;
+dados.forEach(
+    (atleta) => {
+        conteudo.innerHTML += `
+            <div class='card'>
+                <div class='img-cont'>
+                    <img src='${atleta.imagem}' alt='Foto de ${atleta.nome}'>
+                </div>
+                <p class='posicao'>${atleta.posicao}</p>
+                <p class='nome'>${atleta.nome}</p>
+                <p class='descricao'>${atleta.descricao}</p>
+                <p class='nascimento'>${atleta.nascimento}</p>
+            </div>
+        `;
+    }
+)
+
