@@ -1,5 +1,22 @@
+console.log("Usando forEach", "-----------------------------------------------------------");
+
 dados.forEach(
     (ob) => {
         console.log(ob.nome)
     }
 )
+
+console.log("Usando while", "-----------------------------------------------------------");
+
+let indice = 0;
+
+while (indice < dados.length){
+    console.log(`A posição de ${dados[indice].nome} é ${dados[indice].posicao}`);
+    indice++;
+}
+
+console.log("Usando for clássico", "-----------------------------------------------------------");
+
+for (let contador = 0; contador < dados.length; contador++){
+    console.log(`A altura de ${dados[contador].nome} é ${dados[contador].altura}`);
+}
