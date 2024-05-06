@@ -20,3 +20,9 @@ console.log("Usando for clássico", "-------------------------------------------
 for (let contador = 0; contador < dados.length; contador++){
     console.log(`A altura de ${dados[contador].nome} é ${dados[contador].altura}`);
 }
+
+console.log("usando for...of", "-----------------------------------------------------------");
+
+for (let atleta of dados){
+    console.log(`A nome completo de ${atleta.nome} é ${atleta.nome_completo}`);
+}
