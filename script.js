@@ -33,7 +33,11 @@ const atleta = dados[10];
 const conteudo = document.getElementById("conteúdo");
 
 conteudo.innerHTML = `
-    <div>
+    <div class='card'>
         <img src='${atleta.imagem}' alt='Foto de ${atleta.nome}'>
+        <p>${atleta.posicao}</p>
+        <p class='nome'>${atleta.nome}</p>
+        <p class='descricao'>${atleta.descricao}</p>
+        <p class='nascimento'>${atleta.nascimento}</p>
     </div>
 `;
