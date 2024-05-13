@@ -1,4 +1,9 @@
 const conteudo = document.createElement('div');
+conteudo.style.display = 'flex';
+conteudo.style.flexWrap = 'wrap';
+conteudo.style.justifyContent = 'center';
+conteudo.style.alignItems = 'center';
+conteudo.style.gap = '10px';
 
 document.body.appendChild(conteudo);
 
