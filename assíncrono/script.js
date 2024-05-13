@@ -99,7 +99,7 @@ const montaCard = (entrada) => {
 inputPesquisa.onkeyup = (ev) => {
     console.log(ev.target.value);
     
-    if (ev.target.value.length > 3){
+    if (ev.target.value.length > 3 || ev.target.value.length == 0){
         const filtrado = dados.filter(
             (elemento) => {
                 const estaNoNome = elemento.nome.toLowerCase().includes(ev.target.value.toLowerCase());
