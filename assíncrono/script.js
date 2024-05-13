@@ -1,9 +1,25 @@
+let dados;
+
+const divPesquisa = document.createElement('div');
+divPesquisa.style.textAlign = 'center';
+divPesquisa.style.padding = '5px';
+
+const inputPesquisa = document.createElement('input');
+inputPesquisa.type = 'text';
+inputPesquisa.name = 'pesquisa';
+
+divPesquisa.appendChild(inputPesquisa);
+
+document.body.appendChild(divPesquisa);
+
+
 const conteudo = document.createElement('div');
 conteudo.style.display = 'flex';
 conteudo.style.flexWrap = 'wrap';
 conteudo.style.justifyContent = 'center';
 conteudo.style.alignItems = 'center';
 conteudo.style.gap = '10px';
+conteudo.innerHTML = 'carregando...';
 
 document.body.appendChild(conteudo);
 
@@ -78,9 +94,50 @@ const montaCard = (entrada) => {
     return card;
 }
 
-dados.forEach(
-    (atleta) => {
-        conteudo.appendChild(montaCard(atleta));
-    }
-)
 
+
+inputPesquisa.onkeyup = (ev) => {
+    console.log(ev.target.value);
+    
+    if (ev.target.value.length > 3){
+        const filtrado = dados.filter(
+            (elemento) => {
+                const estaNoNome = elemento.nome.toLowerCase().includes(ev.target.value.toLowerCase());
+                const estaNaPosicao = elemento.posicao.toLowerCase().includes(ev.target.value.toLowerCase());
+                return estaNoNome || estaNaPosicao;
+            }
+        )
+    
+        conteudo.innerHTML = '';
+    
+        filtrado.forEach(
+            (atleta) => {
+                conteudo.appendChild(montaCard(atleta));
+            }
+        )
+    }
+
+    
+}
+
+
+
+
+const pegaDados = async (caminho) => {
+    const resposta = await fetch(caminho);
+    const dados = await resposta.json()
+    return dados;
+}
+
+pegaDados("https://botafogo-atletas.mange.li/feminino").then(
+    (entrada) => {
+        dados = entrada;
+        conteudo.innerHTML = '';
+        dados.forEach(
+            (atleta) => {
+                conteudo.appendChild(montaCard(atleta));
+            }
+        )
+    });
+
+console.log('síncrono')
