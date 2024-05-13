@@ -29,17 +29,26 @@ const montaCard = (entrada) => {
     imagem.style.height = '7rem';
     imagem.style.borderRadius = '50%';
     imagem.style.objectFit = 'cover';
+    imagem.style.objectPosition = 'top';
 
     const posicao = document.createElement('p');
     posicao.innerHTML = entrada.posicao;
-    posicao.style.gridArea = 'a2';
+    posicao.style.cssText = `
+        grid-area: a2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+    `;
+    /*posicao.style.gridArea = 'a2';
     posicao.style.display = 'flex';
     posicao.style.alignItems = 'center';
     posicao.style.justifyContent = 'center';
-    posicao.style.textTransform=  'uppercase';
+    posicao.style.textTransform=  'uppercase';*/
 
     const nome = document.createElement('p');
     nome.innerHTML = entrada.nome;
+    /*nome.className = 'nome';*/
     nome.style.gridArea = 'a3';
     nome.style.display = 'flex';
     nome.style.alignItems = 'center';
@@ -52,7 +61,7 @@ const montaCard = (entrada) => {
 
     const nascimento = document.createElement('p');
     nascimento.innerHTML = entrada.nascimento;
-    descricao.style.gridArea = 'a5';
+    nascimento.style.gridArea = 'a5';
 
     card.appendChild(imgContainer);
     imgContainer.appendChild(imagem);
