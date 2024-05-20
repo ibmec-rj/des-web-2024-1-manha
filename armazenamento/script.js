@@ -24,8 +24,10 @@ conteudo.innerHTML = 'carregando...';
 document.body.appendChild(conteudo);
 
 const handleClick = ( evento ) => {
-    const card = evento.target.closest('article') 
-    console.log(card.dataset.nome);
+    const card = evento.target.closest('article'); 
+    for (const propriedade in card.dataset){
+        document.cookie = `${propriedade}=${card.dataset[propriedade]}`;
+    }
 }
 
 const montaCard = (entrada) => {
