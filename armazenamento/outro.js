@@ -22,8 +22,7 @@ const montaCard = (entrada) => {
     card.dataset.nascimento = entrada.nascimento;
     card.dataset.altura = entrada.altura;
 
-    card.onclick = handleClick;
-
+   
     const imgContainer = document.createElement('div');
     imgContainer.style.gridArea = 'a1';
     imgContainer.style.display = 'flex';
@@ -66,12 +65,10 @@ const montaCard = (entrada) => {
     const descricao = document.createElement('p');
     descricao.innerHTML = entrada.descricao;
     descricao.style.gridArea = 'a4';
-    descricao.style.textOverflow = 'ellipsis';
-    descricao.style.overflow = 'hidden';
-    descricao.style.whiteSpace = 'nowrap';
+    
 
     const nascimento = document.createElement('p');
-    nascimento.innerHTML = entrada.nascimento;
+    nascimento.innerHTML = `${entrada.nascimento} | Elenco: ${entrada.elencoPelaUrl} | Altura: ${entrada.alturaPelaUrl}`;
     nascimento.style.gridArea = 'a5';
 
     card.appendChild(imgContainer);
@@ -91,7 +88,28 @@ const acha_cookie = ( chave ) => {
     return procurado?.split('=')[1];
 }
 
+let obj = {}
 
+// com cookies
+/*const array_cookies = document.cookie.split("; ");
+for (const par of array_cookies){
+    const partes = par.split('=');
+    obj[partes[0]] = partes[1];
+}*/
 
+// com localStorage item por item
+/*const tamanhoLocalStorage = localStorage.length;
+
+let chave;
+for (let i = 0; i < tamanhoLocalStorage; i++){
+    chave = localStorage.key(i);
+    obj[chave] = localStorage.getItem(chave);
+}*/
+
+obj = JSON.parse(localStorage.getItem('atleta'));
+
+const parametros = new URLSearchParams(window.location.search);
+obj.alturaPelaUrl = parametros.get('altura');
+obj.elencoPelaUrl = parametros.get('elenco');
 
 document.body.appendChild(montaCard(obj));
